@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Employee} from "../shared/employee.model";
 import {EmployeeService} from "../shared/employee.service";
 
@@ -8,14 +8,12 @@ import {EmployeeService} from "../shared/employee.service";
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-  employeeList: Employee[] = [];
+  @Input() employeeList: Employee[] = [];
   displayColumns: string[] = ['firstName', 'lastName', 'age', 'gender', 'salary', 'position'];
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.employeeService.getEmployees()
-      .then(employees => this.employeeList = employees);
+  ngOnInit() {
   }
 
 }

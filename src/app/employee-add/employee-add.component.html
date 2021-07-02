@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12 add-form">
+    <div class="form-container">
+      <h1>Add Employee</h1>
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="firstName" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="lastName" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="gender" required>
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" [(ngModel)]="age" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" class="example-right-align" [(ngModel)]="salary" required>
+        <span matSuffix>zł&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Position</mat-label>
+        <mat-select [(ngModel)]="position" required>
+          <mat-option  value="Employee">Employee</mat-option>
+          <mat-option value="Manager">Manager</mat-option>
+          <mat-option value="Finance Director">Finance Director</mat-option>
+          <mat-option value="CEO">CEO</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addEmployee()">Add</button><br>
+      <button mat-raised-button color="accent" (click)="backToList()">Cancel</button>
+    </div>
+  </div>
+</div>
