@@ -10,6 +10,7 @@ import {EmployeeService} from "./shared/employee.service";
 export class AppComponent implements OnInit{
   employeeList: Employee[] = [];
   content: string = 'employeeList';
+  currentEditEmployee: Employee = {id: 1, firstName: 'Karol', lastName: 'Knieć', age: 24, gender: 'Male', salary: 5000, position: 'CEO'};
 
   constructor(private employeeService: EmployeeService) {
   }
@@ -24,11 +25,30 @@ export class AppComponent implements OnInit{
   }
 
   addEmployeeToList(employee: Employee) {
-    this.employeeList.push(employee);
+    employee.id = Math.max(...this.employeeList.map(e => e.id)) + 1;
+    this.employeeService.addEmployee(employee)
+      .then(employees => this.employeeList = employees);
     this.content = 'employeeList';
   }
 
-  cancelAddForm() {
+  removeEmployee(id: number) {
+    this.employeeList = [...this.employeeService.removeEmployee(id)];
+    console.log(this.employeeList);
+  }
+
+  switchEditEmployee(id: number) {
+    this.currentEditEmployee = this.employeeService.getEmployee(id);
+    if(this.currentEditEmployee === undefined)
+      return;
+    this.content = 'employeeEdit';
+  }
+
+  editEmployee(employee: Employee) {
+    this.employeeList = this.employeeService.editEmployee(employee);
+    this.content = 'employeeList';
+  }
+
+  backToList() {
     this.content = 'employeeList';
   }
 }

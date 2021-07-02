@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Output('backToList') backToEmployeeList = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  backToList() {
+    this.backToEmployeeList.emit();
+  }
 }

@@ -1,12 +1,17 @@
-<app-header></app-header>
+<app-header (backToList)="backToList()"></app-header>
 
 <div class="container-lg">
-
 
   <app-employee-add
     *ngIf="content === 'employeeAdd'"
     (addEmployee)="addEmployeeToList($event)"
-    (cancelForm)="cancelAddForm()"></app-employee-add>
+    (cancelForm)="backToList()"></app-employee-add>
+
+  <app-employee-edit
+    *ngIf="content === 'employeeEdit'"
+    [employee]="currentEditEmployee"
+    (editEmployeeForm)="editEmployee($event)"
+    (cancelForm)="backToList()"></app-employee-edit>
 
   <div *ngIf="content === 'employeeList'">
     <div id="button_control">
@@ -14,7 +19,10 @@
         <mat-icon>person_add</mat-icon> Add Employee
       </button>
     </div>
-    <app-employee-list [employeeList]="employeeList"></app-employee-list>
+    <app-employee-list
+      [employeeList]="employeeList"
+      (editEmployeeFromList)="switchEditEmployee($event)"
+      (removeEmployeeFromList)="removeEmployee($event)"></app-employee-list>
   </div>
 
   <footer>

@@ -16,13 +16,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     EmployeeListComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule,
